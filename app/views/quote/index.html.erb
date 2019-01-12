@@ -1,0 +1,21 @@
+
+<div class="row">
+<div class="col-sm-12 text-center quotesheading" style="padding-bottom:10px;">
+<h1> Feel free to add new quote</h1>
+<%= link_to 'Add Quote', new_quote_path, { :class=>"btn btn-success" } %>
+</div>
+</div>
+<div class="row">
+<% @quote.each do |quote| %>
+    <div class="col-sm-12 text-center quoteText">
+    <h2><%= quote.title %></h2></br>
+    <p><%= quote.text %></p>
+    <p><%= link_to 'Show', quote_path(quote), { :class=>"btn btn-success" } %>
+    <%= link_to 'Destroy', quote_path(quote),
+            method: :delete,
+            :class => 'btn btn-danger',
+            data: { confirm: 'Are you sure?'} %></button> </p>
+    </div>
+    <hr />
+    <% end %>
+</div>

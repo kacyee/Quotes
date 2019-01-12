@@ -1,0 +1,46 @@
+<div class="row">
+<div class="col-sm-12 text-center">
+<blockquote class="blockquote">
+    <h1 style="color:lightgray;" class="italic">
+    <%= @quote.text %>
+    </h1>
+<footer class="blockquote-footer">
+<%= @quote.title %>
+</footer>
+</blockquote>
+</div>
+<div class="col-sm-12 text-center">
+<h2>Add comment:</h2>
+<%= form_with(model: [ @quote, @quote.comments.build], local: true) do |form| %>
+<p>
+    <%= form.label :author %><br>
+    <%= form.text_field :commenter %>
+</p>
+<p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+</p>
+<p>
+    <%= form.submit %>
+</p>
+<% end %>
+
+<h2 style="color:red;"> Comments</h2>
+</div>
+<% @quote.comments.each do |comment| %>
+    <div class="col-xs-12 text-center">
+    <p>
+        <strong>Commenter:</strong>
+        <%= comment.commenter %>
+    </p>
+
+    <p>
+        <strong>Comment:</strong>
+        <%= comment.body %>
+    </p>
+    </div>
+<% end %>
+<div class="col-xs-12 text-center">
+<%= link_to 'Back', quote_index_path, { :class=>"btn btn-danger" } %>
+</div>
+</div>
